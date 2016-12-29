@@ -9,6 +9,7 @@ ___
 
 ###Run development mode
 Starts gulp-server-livereload and watches `.coffee` (through Watchify), `.styl`, `.pug`
+
 `npm start` or `gulp`
 
 ###Build only
