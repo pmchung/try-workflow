@@ -1,11 +1,14 @@
 ###
-  Project's file structure
+  Gulp & Structure configuration
 ###
 module.exports =
   # root
   src: './src'
   dist: './dist'
-  # compiler specific
+  webserver:
+    livereload: true
+  browserify:
+    extensions: ['.coffee', '.json', '.js']
   coffee:
     src: './src/app/index.coffee'
     dist: './dist/js/'

@@ -10,25 +10,19 @@ watchify = require 'watchify'
 source = require 'vinyl-source-stream' # convert browserify stream to vinyl stream
 buffer = require 'vinyl-buffer' # buffer up the stream
 
-###
-  Pug
-###
+# Pug
 gulp.task 'pug', ->
   gulp.src config.pug.src
     .pipe pug()
     .pipe gulp.dest config.pug.dist
 
-###
-  Stylus
-###
+# Stylus
 gulp.task 'stylus', ->
   gulp.src config.stylus.src
     .pipe stylus()
     .pipe gulp.dest config.stylus.dist
 
-###
-  Coffee + Browserify/Watchify + ngAnnotate + Uglify
-###
+# Coffee + Browserify/Watchify + ngAnnotate + Uglify
 gulp.task 'coffee', ->
   compileCoffee config.coffee.src
 
@@ -38,13 +32,11 @@ gulp.task 'coffee-watch', ->
 compileCoffee = (entry, shouldWatch = false) ->
   opt =
     entries: entry
-    extensions: ['.coffee', '.json', '.js']
+    extensions: config.browserify.extensions
   b = if shouldWatch then watchify browserify opt else browserify opt
   b.transform coffeeify
   compile = ->
     b.bundle()
-      .on 'error', (msg) ->
-        console.log msg
       .pipe source config.coffee.distName
       .pipe buffer() # collect stream
       .pipe ngAnnotate()

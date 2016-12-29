@@ -10,8 +10,7 @@ gulp.task 'watch', ['coffee-watch', 'stylus', 'pug'], ->
 
 gulp.task 'dev-server', ['watch'], ->
   gulp.src config.dist
-    .pipe webserver
-      livereload: true
+    .pipe webserver config.webserver
 
 gulp.task 'build', ['coffee', 'pug', 'stylus'] # build only
 gulp.task 'default', ['dev-server'] # full dev mode

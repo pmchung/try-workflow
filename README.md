@@ -15,3 +15,10 @@ Starts gulp-server-livereload and watches `.coffee` (through Watchify), `.styl`,
 ###Build only
 
 `gulp build`
+
+___
+
+##Todo
+[ ] Sourcemaps
+[ ] Build error notifications
+[ ] Stylus/Pug minification
