@@ -20,5 +20,5 @@ ___
 
 ##Todo
 - [ ] Sourcemaps
-- [ ] Build error notifications
-- [ ] Stylus/Pug minification
+- [x] Build error notifications
+- [x] Stylus/Pug minification
