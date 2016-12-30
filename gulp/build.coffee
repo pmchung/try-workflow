@@ -24,28 +24,27 @@ gulp.task 'stylus', ->
 
 # Coffee + Browserify/Watchify + ngAnnotate + Uglify
 gulp.task 'coffee', ->
-  compileCoffee config.coffee.src
+  compileCoffee false
 
 gulp.task 'coffee-watch', ->
-  compileCoffee config.coffee.src, true
+  compileCoffee true
 
-compileCoffee = (entry, shouldWatch = false) ->
-  opt =
-    entries: entry
-    extensions: config.browserify.extensions
-  b = if shouldWatch then watchify browserify opt else browserify opt
+compileCoffee = (shouldWatch = false) ->
+  b = if shouldWatch then watchify browserify config.browserify else browserify config.browserify
   b.transform coffeeify
-  compile = ->
-    b.bundle()
-      .pipe source config.coffee.distName
-      .pipe buffer() # collect stream
-      .pipe ngAnnotate()
-      .pipe uglify()
-      .pipe gulp.dest config.coffee.dist
   if shouldWatch
     b.on 'log', (msg) ->
       console.log "Built [#{config.coffee.distName}] => #{msg}"
     b.on 'update', ->
-      compile()
+      _compile(b)
       return
-  compile()
+  _compile(b)
+
+_compile = (b) ->
+  b.bundle()
+    .pipe source config.coffee.distName
+    .pipe buffer() # collect stream
+    .pipe ngAnnotate()
+    .pipe uglify()
+    .pipe gulp.dest config.coffee.dist
+

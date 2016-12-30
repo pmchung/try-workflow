@@ -5,9 +5,12 @@ module.exports =
   # root
   src: './src'
   dist: './dist'
+  # Options - https://github.com/hiddentao/gulp-server-livereload#options
   webserver:
     livereload: true
+  # Options - https://github.com/substack/node-browserify#browserifyfiles--opts
   browserify:
+    entries: './src/app/'
     extensions: ['.coffee', '.json', '.js']
   coffee:
     src: './src/app/index.coffee'
