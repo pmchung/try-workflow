@@ -1,5 +1,5 @@
 appComponent =
-  templateUrl: 'app/app.view.html'
+  templateUrl: '/app/app.view.html'
   controller: class AppComponent
     constructor: (helloService) ->
       'ngInject'
@@ -7,7 +7,7 @@ appComponent =
       return
 
     $onInit: ->
-      @msg = 'hello'
+      @msg = 'hello??!'
       setTimeout (=> console.log @msg), 1000
       @helloService
         .hello()
