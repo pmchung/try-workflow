@@ -1,21 +1,28 @@
+$silent
+  color: red
+  font-size: 20px
+  text-decoration: underline
+
+.silent2
+  color: red
+  font-size: 20px
+  text-decoration: underline
+
 html, body
   margin: 0
   padding: 0
 
+
 body
   font-family: sans-serif
 
-h1
-  color: yellow
-  font-family: 'Arial'
+.welcome
+  border: 1px solid green
   &:hover
-    color: red
-
-h2
-  display: inline-block
-
-b
-  color: black
-
+    background-color: gray
+  h1
+    @extend .silent2
+  h2
+    @extend .silent2
 
 

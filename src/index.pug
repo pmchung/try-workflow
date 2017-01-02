@@ -5,8 +5,15 @@ html
     title hello world
     link(rel='stylesheet', href='./styles/app.css')
   body(ng-app='app', ng-strict-di)
-    div.home-message
-      h2 hello
+    //- will not output within markup
+    div.welcome
+      h2 hello,
       app
+    //- will not output within markup
+    h2 hello
+    h1 world
+
+
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js')
     script(src='./js/app.js')
+

@@ -16,7 +16,9 @@ buffer = require 'vinyl-buffer' # buffer up the stream
 gulp.task 'pug', ->
   gulp.src config.pug.src
     .pipe plumber
-      errorHandler: notify.onError 'Pug: <%= error.message %>'
+      errorHandler: notify.onError
+        title: 'Pug error'
+        message: '<%= error.message %>'
     .pipe pug()
     .pipe gulp.dest config.pug.dist
 
@@ -24,7 +26,9 @@ gulp.task 'pug', ->
 gulp.task 'stylus', ->
   gulp.src config.stylus.src
     .pipe plumber
-      errorHandler: notify.onError 'Stylus: <%= error.message %>'
+      errorHandler: notify.onError
+        title: 'Stylus error'
+        message: '<%= error.message %>'
     .pipe stylus config.stylus.options
     .pipe gulp.dest config.stylus.dist
 
@@ -39,7 +43,7 @@ gulp.task 'coffee-watch', ->
   b = watchify browserify config.browserify
   b.transform coffeeify
   b.on 'log', (msg) ->
-    console.log '🚀', " Built '#{config.coffee.distName}' => #{msg}"
+    console.log '🔧', " Built '#{config.coffee.distName}' => #{msg}"
   b.on 'update', ->
     compileCoffee(b)
     return
@@ -48,7 +52,9 @@ gulp.task 'coffee-watch', ->
 compileCoffee = (b) ->
   b.bundle()
     .pipe plumber
-      errorHandler: notify.onError 'Coffee: <%= error.message %>'
+      errorHandler: notify.onError
+        title: 'Coffee error'
+        message: '<%= error.message %>'
     .pipe source config.coffee.distName
     .pipe buffer() # collect stream
     .pipe ngAnnotate()
