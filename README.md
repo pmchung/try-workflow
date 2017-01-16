@@ -25,9 +25,3 @@ ___
 - Allow use of `require` to grab dependencies.
 - Don't need to worry about concat order.
 
-___
-
-##Todo
-- [ ] Sourcemaps
-- [x] Build error notifications
-- [x] Stylus/Pug minification
